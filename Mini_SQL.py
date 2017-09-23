@@ -140,6 +140,7 @@ def AGGREGATE_FUNCTIONS(query,finalTable,finalRow):
                 return False
             ans = 0
             for row in finalTable:
+                # print(int(row[finalRow.index(name)]))
                 ans += int(row[finalRow.index(name)])
             print ans*1.0/len(finalTable),
         if "count(" in name or "COUNT(" in name:
@@ -152,7 +153,9 @@ def AGGREGATE_FUNCTIONS(query,finalTable,finalRow):
     print
 
 def printOutput(query,finalTable,finalRow):
-    finalAns = set()
+    # print(len(finalTable))
+    # print(finalRow)
+    finalAns = []
     temp = []
     final = []
     if len(query) == 1:
@@ -170,11 +173,15 @@ def printOutput(query,finalTable,finalRow):
     for name in query:
         print name,
     print
+    i = 0
+    # j = 0
     for row in finalTable:
+        i += 1
         temp = []
         for name in query:
             temp.append(row[finalRow.index(name)])
-        finalAns.add(tuple(temp))
+        finalAns.append(tuple(temp))
+    #print(len(finalAns),i)
     for row in finalAns:
         print row
     return True
@@ -358,14 +365,16 @@ def table(filename,metaData):
             print "update Meta data dictionary"
         else :
             row = []
+            # print(len(tableData))
             for i in xrange(len(tableData)):
                 tableDict.append(tableData[i].split(','))
                 temp = tableDict[i][-1]
-                tableDict[i][-1] = temp[:len(temp)-2]
+                tableDict[i][-1] = temp[:len(temp)-1]
 
     except:
         print "Something Wrong"
         pass
+    # print (tableDict)
     return tableDict
 
 if __name__ == "__main__":
