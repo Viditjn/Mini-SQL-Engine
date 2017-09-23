@@ -179,7 +179,7 @@ def printOutput(query,finalTable,finalRow):
         i += 1
         temp = []
         for name in query:
-            temp.append(row[finalRow.index(name)])
+            temp.append(row[finalRow.index(name)].split('\r')[0])
         finalAns.append(tuple(temp))
     #print(len(finalAns),i)
     for row in finalAns:
